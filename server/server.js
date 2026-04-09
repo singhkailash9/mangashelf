@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const authRoutes = require("./routes/authRoutes");
 const listRoutes = require('./routes/listRoutes');
+const searchRoutes = require('./routes/searchRoutes');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use('/api/list', listRoutes);
+app.use('/api/search', searchRoutes);
 
 mongoose.connect(process.env.MONGO_URI).then(console.log("MongoDB connected")).catch((err)=>console.error(`MongoDB error: ${err}`));
 

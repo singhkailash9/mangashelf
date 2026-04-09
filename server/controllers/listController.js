@@ -43,7 +43,7 @@ exports.updateEntry = async (req, res) => {
     const entry = await ListEntry.findOneAndUpdate(
       { _id: req.params.id, userId: req.user._id },
       { status, progress, rating },
-      { new: true, runValidators: true }
+      { returnDocument: 'after', runValidators: true }
     );
 
     if (!entry) {
