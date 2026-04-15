@@ -31,6 +31,11 @@ exports.searchManga = async (req, res) => {
 
     res.status(200).json({ success: true, results });
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
+    // console.error("Jikan API Error:", err.response?.data || err.message);
+    
+    const statusCode = err.response?.status || 500;
+    const errorMessage = err.response?.data?.message || err.message;
+
+    res.status(statusCode).json({ success: false, message: errorMessage });
   }
 };
